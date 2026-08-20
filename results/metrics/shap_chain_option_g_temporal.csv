@@ -1,0 +1,6 @@
+antibiotic,chain_position,fraction_prior_attribution,split,order_name
+Ampicillin-Amoxicillin,0,0.0,temporal,option_g
+Cotrimoxazole,1,0.10400798171758652,temporal,option_g
+Ciprofloxacin,2,0.09230935573577881,temporal,option_g
+Amoxicillin-Clavulanic acid,3,0.13293105363845825,temporal,option_g
+Ceftriaxone,4,0.19252675771713257,temporal,option_g

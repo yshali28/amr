@@ -1,0 +1,9 @@
+data/raw/
+data/interim/
+data/processed/
+amr_env/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+results/models/
+.env

@@ -1,0 +1,6 @@
+antibiotic,chain_position,fraction_prior_attribution,split,order_name
+Ampicillin-Amoxicillin,0,0.0,random,option_a
+Ceftriaxone,1,0.10292454063892365,random,option_a
+Amoxicillin-Clavulanic acid,2,0.12327264249324799,random,option_a
+Ciprofloxacin,3,0.13076189160346985,random,option_a
+Cotrimoxazole,4,0.11640457063913345,random,option_a
