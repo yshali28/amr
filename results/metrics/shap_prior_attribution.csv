@@ -1,0 +1,12 @@
+species,order_name,split,antibiotic,chain_position,fraction_prior_attribution
+ecoli,option_a,temporal,Ampicillin-Amoxicillin,0,0.0
+ecoli,option_a,temporal,Ceftriaxone,1,0.1178767681121826
+ecoli,option_a,temporal,Amoxicillin-Clavulanic acid,2,0.1355809420347213
+ecoli,option_a,temporal,Ciprofloxacin,3,0.1219745799899101
+ecoli,option_a,temporal,Cotrimoxazole,4,0.1160674169659614
+ecoli,option_a,random,Ampicillin-Amoxicillin,0,0.0
+ecoli,option_a,random,Ceftriaxone,1,0.1029245406389236
+ecoli,option_a,random,Amoxicillin-Clavulanic acid,2,0.1232726424932479
+ecoli,option_a,random,Ciprofloxacin,3,0.1307618916034698
+ecoli,option_a,random,Cotrimoxazole,4,0.1164045706391334
+kpneumoniae,option_a,temporal,Piperacillin-Tazobactam,1,0.1581692099571228

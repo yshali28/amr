@@ -1,0 +1,2 @@
+order_name,seed_antibiotic,seed_label_inverted,all_zero_frac,jaccard_score,hamming_loss,exact_match_ratio
+option_e_ciprofloxacin_inverted,Ciprofloxacin,True,0.00456968773800457,0.5525387154100025,0.2811881188118812,0.3214013709063214

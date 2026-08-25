@@ -1,0 +1,11 @@
+species,chain_position,antibiotic,mean_abs_proba_diff
+ecoli,0,Ampicillin-Amoxicillin,0.0
+ecoli,1,Ceftriaxone,0.09316777323316192
+ecoli,2,Amoxicillin-Clavulanic acid,0.12755036689396954
+ecoli,3,Ciprofloxacin,0.10851950182910079
+ecoli,4,Cotrimoxazole,0.22775062097660703
+kpneumoniae,0,Ceftriaxone,0.0
+kpneumoniae,1,Piperacillin-Tazobactam,0.03725068579456796
+kpneumoniae,2,Tobramycin,0.026799024624739952
+kpneumoniae,3,Ciprofloxacin,0.052340012008989696
+kpneumoniae,4,Cotrimoxazole,0.0681935941512786
