@@ -1,0 +1,25 @@
+species,antibiotic,n_test,boundary_fraction
+ecoli,Ciprofloxacin,1313,0.10281797410510282
+ecoli,Cotrimoxazole,1313,0.19268849961919268
+ecoli,Ceftriaxone,1313,0.048743335872048744
+ecoli,Amoxicillin-Clavulanic acid,1313,0.03351104341203351
+ecoli,Ampicillin-Amoxicillin,1313,0.32063975628332064
+ecoli,__overall__,1313,0.13968012185833967
+saureus,Penicillin,1066,0.16041275797373358
+saureus,Erythromycin,1066,0.020637898686679174
+saureus,Clindamycin,1066,0.017823639774859287
+saureus,Oxacillin,1066,0.02626641651031895
+saureus,Ciprofloxacin,1066,0.03377110694183865
+saureus,__overall__,1066,0.05178236397748593
+kpneumoniae,Ceftriaxone,743,0.014804845222072678
+kpneumoniae,Tobramycin,743,0.005383580080753701
+kpneumoniae,Piperacillin-Tazobactam,743,0.014804845222072678
+kpneumoniae,Ciprofloxacin,743,0.02557200538358008
+kpneumoniae,Cotrimoxazole,743,0.040376850605652756
+kpneumoniae,__overall__,743,0.020188425302826378
+paeruginosa,Piperacillin-Tazobactam,701,0.0014265335235378032
+paeruginosa,Meropenem,701,0.0
+paeruginosa,Ciprofloxacin,701,0.0042796005706134095
+paeruginosa,Ceftazidime,701,0.0
+paeruginosa,Cefepime,701,0.0014265335235378032
+paeruginosa,__overall__,701,0.0014265335235378032
