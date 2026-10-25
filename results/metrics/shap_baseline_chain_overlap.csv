@@ -1,0 +1,6 @@
+antibiotic,chain_position,top15_overlap_count,top15_overlap_fraction
+Ampicillin-Amoxicillin,0,15,1.0
+Ceftriaxone,1,10,0.6666666666666666
+Amoxicillin-Clavulanic acid,2,7,0.4666666666666667
+Ciprofloxacin,3,6,0.4
+Cotrimoxazole,4,2,0.13333333333333333

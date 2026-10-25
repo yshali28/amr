@@ -1,0 +1,6 @@
+antibiotic,seed_a,seed_b,top15_overlap_count,top15_overlap_fraction
+Ciprofloxacin,42,1337,15,1.0
+Cotrimoxazole,42,1337,15,1.0
+Ceftriaxone,42,1337,15,1.0
+Amoxicillin-Clavulanic acid,42,1337,15,1.0
+Ampicillin-Amoxicillin,42,1337,15,1.0
