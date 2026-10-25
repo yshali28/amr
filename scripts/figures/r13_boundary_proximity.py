@@ -36,8 +36,8 @@ def main():
         ax.hist(all_proba, bins=40, color=color, alpha=0.85)
         ax.axvline(0.5, color='black', linestyle='--', linewidth=1.2, label='decision boundary (0.5)')
 
-        near_boundary = ((all_proba > 0.4) & (all_proba < 0.6)).mean()
-        ax.set_title(f'{label}\n{near_boundary:.1%} of predictions in [0.4, 0.6]')
+        near_boundary = ((all_proba > 0.3) & (all_proba < 0.7)).mean()
+        ax.set_title(f'{label}\n{near_boundary:.1%} of predictions in [0.3, 0.7]')
         ax.set_xlabel('predicted probability (pooled across antibiotics)')
         ax.legend(fontsize=9)
 

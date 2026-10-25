@@ -42,6 +42,8 @@ from src.evaluation.metrics import multilabel_metrics
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
+JOINT_METRIC_COLUMNS = ['hamming_loss', 'jaccard_score', 'jaccard_score_zd1', 'exact_match_ratio', 'restricted_jaccard']
+
 
 def train_chain_saureus(X, dataset, split, split_name, order, order_name):
     """
@@ -83,10 +85,23 @@ def train_chain_saureus(X, dataset, split, split_name, order, order_name):
     all_zero_frac = (Y_pred.sum(axis=1) == 0).mean()
     print(f"all_zero_frac: {all_zero_frac:.4f}")
 
+    # Chain-baseline agreement: fraction of test isolates where the chain's
+    # full predicted label vector exactly matches a freshly-trained
+    # independent baseline's, for the same split and column order.
+    baseline_pred = np.zeros_like(Y_pred)
+    for i, antibiotic in enumerate(order):
+        baseline_model = XGBClassifier(random_state=RANDOM_SEED, eval_metric='logloss')
+        baseline_model.fit(X_train, Y_train[:, i])
+        baseline_pred[:, i] = baseline_model.predict(X_test)
+
+    chain_baseline_agreement = (Y_pred == baseline_pred).all(axis=1).mean()
+    print(f"chain-baseline agreement: {chain_baseline_agreement:.4f}")
+
     results_df = pd.DataFrame(rows, columns=['antibiotic', 'auroc', 'f1', 'split', 'order_name'])
-    results_df['hamming_loss'] = joint_metrics['hamming_loss']
-    results_df['jaccard_score'] = joint_metrics['jaccard_score']
+    for col in JOINT_METRIC_COLUMNS:
+        results_df[col] = joint_metrics[col]
     results_df['all_zero_frac'] = all_zero_frac
+    results_df['chain_baseline_agreement'] = chain_baseline_agreement
 
     output_dir = PROJECT_ROOT / 'results' / 'metrics'
     output_dir.mkdir(parents=True, exist_ok=True)

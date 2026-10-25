@@ -1,7 +1,14 @@
 """
 Phase 0: selection-effect check -- per-antibiotic resistance rate in the full
-species cohort (every isolate with a non-missing label for that antibiotic)
-vs. the resistance rate within the final complete-case modeling panel.
+species cohort (every isolate with a non-missing label for that antibiotic,
+metadata-level) vs. the resistance rate within the final complete-case
+modeling panel.
+
+The complete-case side uses the spectrum-validated cohort (via
+load_driams_dataset), matching the documented convention in every species'
+config.py ("use the spectrum-validated count in all reported results") --
+NOT the metadata-only complete-case mask, which admits isolates lacking an
+actual matched spectrum and understates the true selection effect.
 
 Saves results/metrics/selection_effect_{species}.csv (one per species), with
 columns: antibiotic, full_cohort_n, full_cohort_resistance_rate,
@@ -12,6 +19,7 @@ import sys
 from pathlib import Path
 
 import pandas as pd
+from maldi_learn.driams import load_driams_dataset
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
@@ -29,25 +37,31 @@ SPECIES_CONFIGS = [
 def main():
     METRICS_DIR.mkdir(parents=True, exist_ok=True)
 
-    print("[selection_effects] loading raw metadata...")
+    print("[selection_effects] loading raw metadata (for full-cohort rates)...")
     metadata = load_raw_metadata(ID_FOLDER)
 
     for label, module_name in SPECIES_CONFIGS:
-        module = __import__(module_name, fromlist=['SPECIES', 'ANTIBIOTICS'])
-        SPECIES, ANTIBIOTICS = module.SPECIES, module.ANTIBIOTICS
+        module = __import__(module_name, fromlist=['DATA_ROOT', 'SPECIES', 'ANTIBIOTICS'])
+        DATA_ROOT, SPECIES, ANTIBIOTICS = module.DATA_ROOT, module.SPECIES, module.ANTIBIOTICS
 
         species_df = metadata[metadata['species'] == SPECIES]
 
-        complete_mask = pd.Series(True, index=species_df.index)
-        for antibiotic in ANTIBIOTICS:
-            column = species_df[antibiotic]
-            complete_mask &= column.notna() & (column != MISSING_TOKEN)
-        complete_df = species_df[complete_mask]
+        print(f"[selection_effects] {label}: loading spectrum-validated complete-case cohort...")
+        dataset = load_driams_dataset(
+            root=str(DATA_ROOT.parent),
+            site='DRIAMS-A',
+            years=['2015', '2016', '2017', '2018'],
+            species=SPECIES,
+            antibiotics=ANTIBIOTICS,
+            handle_missing_resistance_measurements='remove_if_any_missing',
+            spectra_type='binned_6000',
+        )
+        print(f"[selection_effects] {label}: n_samples={dataset.n_samples}")
 
         rows = []
         for antibiotic in ANTIBIOTICS:
             full_labels = species_df[antibiotic].apply(lambda v: collapse_label(v, MISSING_TOKEN)).dropna()
-            complete_labels = complete_df[antibiotic].apply(lambda v: collapse_label(v, MISSING_TOKEN)).dropna()
+            complete_labels = dataset.to_numpy(antibiotic)
 
             rows.append({
                 'antibiotic': antibiotic,
